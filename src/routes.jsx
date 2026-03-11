@@ -1,30 +1,33 @@
-// Import necessary components and functions from react-router-dom.
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
-import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    Route,
-} from "react-router-dom";
-import { Layout } from "./pages/Layout";
-import { Home } from "./pages/Home";
-import { Single } from "./pages/Single";
-import { Demo } from "./pages/Demo";
+// AQUÍ VAN TUS IMPORTS DE LAS PÁGINAS:
+import { Contacts } from "./pages/contacts.jsx";
+import { AddContacts } from "./pages/AddContacts.jsx";
 
-export const router = createBrowserRouter(
-    createRoutesFromElements(
-    // CreateRoutesFromElements function allows you to build route elements declaratively.
-    // Create your routes here, if you want to keep the Navbar and Footer in all views, add your new routes inside the containing Route.
-    // Root, on the contrary, create a sister Route, if you have doubts, try it!
-    // Note: keep in mind that errorElement will be the default page when you don't get a route, customize that page to make your project more attractive.
-    // Note: The child paths of the Layout element replace the Outlet component with the elements contained in the "element" attribute of these child paths.
+import { Navbar } from "./components/Navbar.jsx";
+import { Footer } from "./pages/Footer.jsx";
+import injectContext from "./store/appContext.jsx";
 
-      // Root Route: All navigation will start from here.
-      <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>} >
 
-        {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
-        <Route path= "/" element={<Home />} />
-        <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
-        <Route path="/demo" element={<Demo />} />
-      </Route>
-    )
-);
+
+
+const App = () => {
+    return (
+        <div>
+            <BrowserRouter>
+                <ScrollToTop>
+                    <Navbar />
+                    <Routes>
+                        <Route element={<Contacts />} path="/" />
+                        <Route element={<AddContacts />} path="/add" />
+                        <Route path="*" element={<h1>Not found!</h1>} />
+                    </Routes>
+                </ScrollToTop>
+            </BrowserRouter>
+        </div>
+    );
+};
+
+export default injectContext(App);
