@@ -20,8 +20,9 @@ const App = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        <Route element={<Contacts />} path="/" />
-                        <Route element={<AddContacts />} path="/add" />
+                        <Route path="/" element={<Contacts />} />
+                        <Route path="/add" element={<AddContacts key="add" />} />
+                        <Route path="/edit/:id" element={<AddContacts key="edit" />} />
                         <Route path="*" element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

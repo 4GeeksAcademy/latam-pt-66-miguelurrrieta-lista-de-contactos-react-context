@@ -45,7 +45,13 @@ export const Contacts = () => {
 
                               
                                 <div className="col-md-2 d-flex justify-content-end align-self-start">
-                                    <button className="btn btn-link text-dark me-3"><i className="fas fa-pencil-alt"></i></button>
+                                    
+<Link to={"/edit/" + contact.id}>
+    <button className="btn">
+        <i className="fas fa-pencil-alt"></i>
+    </button>
+</Link>
+
                                     <button
     className="btn btn-link text-danger"
     data-bs-toggle="modal"
@@ -75,7 +81,7 @@ export const Contacts = () => {
                     type="button"
                     className="btn btn-secondary"
                     data-bs-dismiss="modal"
-                    onClick={() => actions.deleteContact(state.idToDelete)} // Usaremos un estado para el ID
+                    onClick={() => actions.deleteContact(state.idToDelete)} 
                 >
                     Yes baby!
                 </button>

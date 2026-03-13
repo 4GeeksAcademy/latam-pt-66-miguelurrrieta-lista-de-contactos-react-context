@@ -1,7 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
 return {
 store: {
-
 contacts: [
 {
 id: 1,
@@ -13,7 +12,6 @@ address: "123 Street, Miami"
 ]
 },
 actions: {
-
 createContact: (name, email, phone, address) => {
 const store = getStore();
 const newContact = {
@@ -23,15 +21,24 @@ email: email,
 phone: phone,
 address: address
 };
-
 setStore({ contacts: [...store.contacts, newContact] });
 },
 
+updateContact: (id, updatedContact) => {
+const store = getStore();
+const updatedContacts = store.contacts.map((contact) => {
+if (contact.id === parseInt(id)) {
+return { ...contact, ...updatedContact };
+}
+return contact;
+});
+setStore({ contacts: updatedContacts });
+},
 
 deleteContact: (id) => {
 const store = getStore();
-const updatedContacts = store.contacts.filter((c) => c.id !== id);
-setStore({ contacts: updatedContacts });
+const updatedList = store.contacts.filter(contact => contact.id !== id);
+setStore({ contacts: updatedList });
 }
 }
 };
