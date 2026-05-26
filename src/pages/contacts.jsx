@@ -54,9 +54,13 @@ export const Contacts = () => {
                         
                                 <div className="col-12 col-sm-3 col-md-2 text-center text-sm-end mt-3 mt-sm-0">
                                  
-                                    <button className="btn btn-link text-dark p-2 me-2">
-                                        <i className="fas fa-pencil-alt"></i>
-                                    </button>
+                                    <Link
+    to="/add-contact"
+    state={{ contact: contact }} 
+    className="btn btn-link text-dark p-2 me-2"
+>
+    <i className="fas fa-pencil-alt"></i>
+</Link>
                                    
                                
                                     <button
